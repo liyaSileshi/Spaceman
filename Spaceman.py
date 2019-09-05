@@ -68,9 +68,6 @@ def is_guess_in_word(guess, secret_word):
     else:
         return False
 
-
-
-
 def spaceman(secret_word):
     '''
     A function that controls the game of spaceman. Will start spaceman in the command line.
@@ -78,6 +75,8 @@ def spaceman(secret_word):
       secret_word (string): the secret word to guess.
     '''
     print("Welcome to Spaceman")
+    print("The secret word contains: {numWords} letters".format(numWords = len(secret_word)))
+    print(secret_word)
     input("Please enter one letter")
 
 
@@ -97,6 +96,7 @@ def test():
     print(is_word_guessed('axe', ['a','z','e']))
     print(get_guessed_word('axe',['a','x','c']))
     print(is_guess_in_word('v','axe'))
+    print(load_word())
 test()
 
 
