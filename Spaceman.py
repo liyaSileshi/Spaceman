@@ -53,7 +53,9 @@ def get_guessed_word(secret_word, letters_guessed):
     #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
 
     for char in secret_word:
-        if char in letters_guessed:
+        if char not in letters_guessed:
+            secret_word = secret_word.replace(char,'_')
+        print(secret_word)
 
 
 
