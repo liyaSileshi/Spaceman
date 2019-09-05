@@ -26,18 +26,11 @@ def is_word_guessed(secret_word, letters_guessed):
     '''
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     for char in secret_word:
-        #for i in len(range(secret_word)):
-        #i = 0
-    #    while i < len(secret_word):
         if char in letters_guessed:
-            #if secret_word[i] == char
-            #i += 1
             continue
         else:
             return False
-        return True
-
-    #        i += 1
+    return True
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -51,13 +44,11 @@ def get_guessed_word(secret_word, letters_guessed):
     '''
 
     #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
-
+    guesses = secret_word
     for char in secret_word:
         if char not in letters_guessed:
-            secret_word = secret_word.replace(char,'_')
-        print(secret_word)
-
-
+            guesses = guesses.replace(char,' _')
+    return guesses
 
 def is_guess_in_word(guess, secret_word):
     '''
@@ -70,7 +61,12 @@ def is_guess_in_word(guess, secret_word):
     '''
     #TODO: check if the letter guess is in the secret word
 
-    pass
+    #pass
+    #for char in secret_word:
+    if guess in secret_word:
+        return True
+    else:
+        return False
 
 
 
@@ -97,7 +93,11 @@ def spaceman(secret_word):
     #TODO: check if the game has been won or lost
 
 
-
+def test():
+    print(is_word_guessed('axe', ['a','z','e']))
+    print(get_guessed_word('axe',['a','x','c']))
+    print(is_guess_in_word('v','axe'))
+test()
 
 
 
