@@ -95,6 +95,12 @@ def spaceman(secret_word):
                 if is_guess_in_word(letters_guessed[len(letters_guessed)-1],secret_word):
                     print("Your guess appears in the word!")
                     print(get_guessed_word(secret_word,letters_guessed))
+                    if is_word_guessed(secret_word,letters_guessed):
+                        print("You Won!!!!")
+                        again = input("Want to play again?")
+                        if again == 'yes':
+                            spaceman(load_word())
+                        break
                 else:
                 #if letters_guessed[len(letters_guessed)-1]
                     print("sorry your guess was not in the word, try again :( ")
