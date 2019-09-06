@@ -74,14 +74,26 @@ def spaceman(secret_word):
     Args:
       secret_word (string): the secret word to guess.
     '''
-    letters_guessed=[]
+    incorrectCount = 7
+    letters_guessed = []
     print("Welcome to Spaceman")
     print("The secret word contains: {numWords} letters".format(numWords = len(secret_word)))
     print(secret_word)
     print(get_guessed_word(secret_word,letters_guessed))
-    letters_guessed.append(input("Please enter one letter"))
-    print(get_guessed_word(secret_word,letters_guessed))
+    while incorrectCount > 0:
+        letters_guessed.append(input("Please enter a letter"))
+        # for a letter in letters guessed
+        #for i in letters_guessed:
+        #if the letter is in secret_word
 
+        if is_guess_in_word(letters_guessed[len(letters_guessed)-1],secret_word):
+            print("Your guess appears in the word!")
+            print(get_guessed_word(secret_word,letters_guessed))
+        else:
+            print("sorry your guess was not in the word, try again :( ")
+            incorrectCount -= 1
+            print("You have {count} incorrect guesses left".format(count = incorrectCount))
+                #continue
 
     #TODO: show the player information about the game according to the project spec
 
@@ -99,7 +111,7 @@ def test():
     print(get_guessed_word('axe',['a','x','c']))
     print(is_guess_in_word('v','axe'))
     print(load_word())
-test()
+#test()
 
 
 
