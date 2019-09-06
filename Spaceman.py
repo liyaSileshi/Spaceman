@@ -74,11 +74,13 @@ def spaceman(secret_word):
     Args:
       secret_word (string): the secret word to guess.
     '''
+    letters_guessed=[]
     print("Welcome to Spaceman")
     print("The secret word contains: {numWords} letters".format(numWords = len(secret_word)))
     print(secret_word)
-    input("Please enter one letter")
-
+    print(get_guessed_word(secret_word,letters_guessed))
+    letters_guessed.append(input("Please enter one letter"))
+    print(get_guessed_word(secret_word,letters_guessed))
 
 
     #TODO: show the player information about the game according to the project spec
