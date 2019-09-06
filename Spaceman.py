@@ -1,3 +1,6 @@
+#Liya Tilahun
+#spaceman.py
+
 import random
 
 def load_word():
@@ -43,7 +46,8 @@ def get_guessed_word(secret_word, letters_guessed):
          For letters in the word that the user has not yet guessed, shown an _ (underscore) instead.
     '''
 
-    #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
+    #TODO: Loop through the letters in secret word and build a string that shows the letters that have been
+    #guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
     guesses = secret_word
     for char in secret_word:
         if char not in letters_guessed:
@@ -81,26 +85,32 @@ def spaceman(secret_word):
     print(get_guessed_word(secret_word,letters_guessed))
     while incorrectCount > 0:
         print("-------------------------------------")
-        letters_guessed.append(input("Please enter a letter: "))
-        # if the length of the last letter appended is equal to 1, loop. Else prompt to
+        letter = input("Please enter a letter: ")
+        if letter not in letters_guessed:
+
+            letters_guessed.append(letter)
+        # if the length of the last letter appended i s equal to 1, loop. Else prompt to
         #enter 1 letter only
-        if len(letters_guessed[len(letters_guessed)-1]) == 1:
-            if is_guess_in_word(letters_guessed[len(letters_guessed)-1],secret_word):
-                print("Your guess appears in the word!")
-                print(get_guessed_word(secret_word,letters_guessed))
+            if len(letters_guessed[len(letters_guessed)-1]) == 1:
+                if is_guess_in_word(letters_guessed[len(letters_guessed)-1],secret_word):
+                    print("Your guess appears in the word!")
+                    print(get_guessed_word(secret_word,letters_guessed))
+                else:
+                #if letters_guessed[len(letters_guessed)-1]
+                    print("sorry your guess was not in the word, try again :( ")
+                    incorrectCount -= 1
+                    print("You have {count} incorrect guesses left".format(count = incorrectCount))
+                    if incorrectCount == 0:
+                        print("You lost! Game over! Better luck next time :)")
+                        print("The secret word was...")
+                        print(secret_word)
+                        if is_word_guessed(secret_word,letters_guessed):
+                            print("You Won!!!!")
+                            break
             else:
-                print("sorry your guess was not in the word, try again :( ")
-                incorrectCount -= 1
-                print("You have {count} incorrect guesses left".format(count = incorrectCount))
-                if incorrectCount == 0:
-                    print("You lost! Game over! Better luck next time :)")
-                    print("The secret word was...")
-                    print(secret_word)
-                    if is_word_guessed(secret_word,letters_guessed):
-                        print("You Won!!!!")
-                        break
+                print("please enter 1 letter only")
         else:
-            print("please enter 1 letter only")
+            print("You've already guessed this letter, try again")
         #print("---------------------------------------")
         # else:
         #     print("You lost! Game over! Better luck next time :)")
