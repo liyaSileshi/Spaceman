@@ -2,7 +2,6 @@
 #spaceman.py
 
 import random
-
 def load_word():
     '''
     A function that reads a text file of words and randomly selects one to use as the secret word
@@ -85,7 +84,7 @@ def spaceman(secret_word):
     print(get_guessed_word(secret_word,letters_guessed))
     while incorrectCount > 0:
         print("-------------------------------------")
-        letter = input("Please enter a letter: ")
+        letter = input("Please enter a letter: ").lower()
         if letter not in letters_guessed:
 
             letters_guessed.append(letter)
@@ -97,8 +96,8 @@ def spaceman(secret_word):
                     print(get_guessed_word(secret_word,letters_guessed))
                     if is_word_guessed(secret_word,letters_guessed):
                         print("You Won!!!!")
-                        again = input("Want to play again?")
-                        if again == 'yes':
+                        again = input("Want to play again?").lower()
+                        if again == 'yes' or again == 'y':
                             spaceman(load_word())
                         break
                 else:
@@ -110,8 +109,16 @@ def spaceman(secret_word):
                         print("You lost! Game over! Better luck next time :)")
                         print("The secret word was...")
                         print(secret_word)
+                        again = input("Want to play again?").lower()
+                        if again == 'yes' or again == 'y':
+                            spaceman(load_word())
+                        break
                         if is_word_guessed(secret_word,letters_guessed):
                             print("You Won!!!!")
+                            again = input("Want to play again?").lower()
+                            print("-------------------------------------")
+                            if again == 'yes' or again == 'y':
+                                spaceman(load_word())
                             break
             else:
                 print("please enter 1 letter only")
@@ -140,7 +147,6 @@ def test():
     print(is_guess_in_word('v','axe'))
     print(load_word())
 #test()
-
 
 
 #These function calls that will start the game
