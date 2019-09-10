@@ -75,10 +75,11 @@ def spaceman(secret_word):
     Args:
       secret_word (string): the secret word to guess.
     '''
-    incorrectCount = 7
+    incorrectCount = len(secret_word)
     letters_guessed = []
     print("Welcome to Spaceman")
     print("The secret word contains: {numWords} letters".format(numWords = len(secret_word)))
+    print("You have {count} incorrect guesses left".format(count= incorrectCount))
     print(secret_word)
     print(get_guessed_word(secret_word,letters_guessed))
     while incorrectCount > 0:
@@ -132,15 +133,6 @@ def spaceman(secret_word):
         #     print("The secret word was...")
         #     print(secret_word)
                 #continue
-    #TODO: show the player information about the game according to the project spec √
-
-    #TODO: Ask the player to guess one letter per round and check that it is only one letter√
-
-    #TODO: Check if the guessed letter is in the secret or not and give the player feedback √
-
-    #TODO: show the guessed word so far√
-
-    #TODO: check if the game has been won or lost√
 
 
 def test():
