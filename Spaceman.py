@@ -12,7 +12,6 @@ def load_word():
     f = open('words.txt', 'r')
     words_list = f.readlines()
     f.close()
-
     words_list = words_list[0].split(' ')
     secret_word = random.choice(words_list)
     return secret_word
@@ -85,45 +84,48 @@ def spaceman(secret_word):
     while incorrectCount > 0:
         print("-------------------------------------")
         letter = input("Please enter a letter: ").lower()
-        if letter not in letters_guessed:
+        if letter.isalpha() == True:
 
-            letters_guessed.append(letter)
-        # if the length of the last letter appended i s equal to 1, loop. Else prompt to
-        #enter 1 letter only
-            if len(letters_guessed[len(letters_guessed)-1]) == 1:
-                if is_guess_in_word(letters_guessed[len(letters_guessed)-1],secret_word):
-                    print("Your guess appears in the word!")
-                    print(get_guessed_word(secret_word,letters_guessed))
-                    if is_word_guessed(secret_word,letters_guessed):
-                        print("You Won!!!!")
-                        again = input("Want to play again?").lower()
-                        if again == 'yes' or again == 'y':
-                            spaceman(load_word())
-                        break
-                else:
-                #if letters_guessed[len(letters_guessed)-1]
-                    print("sorry your guess was not in the word, try again :( ")
-                    incorrectCount -= 1
-                    print("You have {count} incorrect guesses left".format(count = incorrectCount))
-                    if incorrectCount == 0:
-                        print("You lost! Game over! Better luck next time :)")
-                        print("The secret word was...")
-                        print(secret_word)
-                        again = input("Want to play again?").lower()
-                        if again == 'yes' or again == 'y':
-                            spaceman(load_word())
-                        break
+            if letter not in letters_guessed:
+                letters_guessed.append(letter)
+            # if the length of the last letter appended i s equal to 1, loop. Else prompt to
+            #  enter 1 letter only
+                if len(letters_guessed[len(letters_guessed)-1]) == 1:
+                    if is_guess_in_word(letters_guessed[len(letters_guessed)-1],secret_word):
+                        print("Your guess appears in the word!")
+                        print(get_guessed_word(secret_word,letters_guessed))
                         if is_word_guessed(secret_word,letters_guessed):
                             print("You Won!!!!")
                             again = input("Want to play again?").lower()
-                            print("-------------------------------------")
                             if again == 'yes' or again == 'y':
                                 spaceman(load_word())
                             break
+                    else:
+                        #if letters_guessed[len(letters_guessed)-1]
+                        print("sorry your guess was not in the word, try again :( ")
+                        incorrectCount -= 1
+                        print("You have {count} incorrect guesses left".format(count = incorrectCount))
+                        if incorrectCount == 0:
+                            print("You lost! Game over! Better luck next time :)")
+                            print("The secret word was...")
+                            print(secret_word)
+                            again = input("Want to play again?: type 'y' or 'yes' if you would like to :) ").lower()
+                            if again == 'yes' or again == 'y':
+                                spaceman(load_word())
+                            break
+                            if is_word_guessed(secret_word,letters_guessed):
+                                print("You Won!!!!")
+                                again = input("Want to play again?").lower()
+                                print("-------------------------------------")
+                                if again == 'yes' or again == 'y':
+                                    spaceman(load_word())
+                                break
+                else:
+                    print("please enter 1 letter only")
             else:
-                print("please enter 1 letter only")
+                print("You've already guessed this letter, try again")
         else:
-            print("You've already guessed this letter, try again")
+            print("Please enter only english alphabetical letter: ")
         #print("---------------------------------------")
         # else:
         #     print("You lost! Game over! Better luck next time :)")
