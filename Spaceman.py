@@ -13,6 +13,8 @@ def load_word():
     words_list = f.readlines()
     f.close()
     words_list = words_list[0].split(' ')
+    #print(max(words_list))
+    #sprint(max(words_list, key=len))
     secret_word = random.choice(words_list)
     return secret_word
 
@@ -69,6 +71,30 @@ def is_guess_in_word(guess, secret_word):
     else:
         return False
 
+#ascii draw
+#divide the drawing into strings and put it into array
+#from the array, print it out
+def draw():
+    s1="           _..._           "
+    s2="         .'     '.      _  "
+    s3="        /    .-""-\   _/ \ "
+    s4="      .-|   /:.   |   |   |"
+    s5="      |  \  |:.   /.-'-./  "
+    s6="      | .-'-;:__.'    =/   "
+    s7="      .'= *=|NASA _.='     "
+    s8="     /   _.  |    ;        "
+    s9="    ;-.-'|    \   |        "
+    s10="   /   | \    _\  _\      "
+    s11="   \__/'._;.  ==' ==\     "
+    s12="            \    \   |    "
+    s13="            /    /   /    "
+    s14="            /-._/-._/     "
+    s15="            \   `\  \     "
+    s16="             `-._/._/     "
+    my_list = [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16]
+    for s in my_list:
+        print(s)
+
 def spaceman(secret_word):
     '''
     A function that controls the game of spaceman. Will start spaceman in the command line.
@@ -79,8 +105,8 @@ def spaceman(secret_word):
     letters_guessed = []
     print("Welcome to Spaceman")
     print("The secret word contains: {numWords} letters".format(numWords = len(secret_word)))
-    print("You have {count} incorrect guesses left".format(count= incorrectCount))
-    print(secret_word)
+    print("You have {} incorrect guesses left".format(incorrectCount))
+    #print(secret_word)
     print(get_guessed_word(secret_word,letters_guessed))
     while incorrectCount > 0:
         print("-------------------------------------")
@@ -102,6 +128,7 @@ def spaceman(secret_word):
                                 spaceman(load_word())
                             break
                     else:
+                        #print(count)
                         #if letters_guessed[len(letters_guessed)-1]
                         print("sorry your guess was not in the word, try again :( ")
                         incorrectCount -= 1
@@ -110,6 +137,7 @@ def spaceman(secret_word):
                             print("You lost! Game over! Better luck next time :)")
                             print("The secret word was...")
                             print(secret_word)
+                            draw()
                             again = input("Want to play again?: type 'y' or 'yes' if you would like to :) ").lower()
                             if again == 'yes' or again == 'y':
                                 spaceman(load_word())
@@ -140,6 +168,8 @@ def test():
     print(get_guessed_word('axe',['a','x','c']))
     print(is_guess_in_word('v','axe'))
     print(load_word())
+    draw()
+
 #test()
 
 
