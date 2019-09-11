@@ -1,6 +1,6 @@
 #Liya Tilahun
 #spaceman.py
-
+#ascii art from https://www.asciiart.eu/space/astronauts
 import random
 def load_word():
     '''
@@ -133,6 +133,7 @@ def spaceman(secret_word):
                         print("sorry your guess was not in the word, try again :( ")
                         incorrectCount -= 1
                         print("You have {count} incorrect guesses left".format(count = incorrectCount))
+                        print(get_guessed_word(secret_word,letters_guessed))
                         if incorrectCount == 0:
                             print("You lost! Game over! Better luck next time :)")
                             print("The secret word was...")
