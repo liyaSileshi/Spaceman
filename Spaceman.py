@@ -108,11 +108,11 @@ def spaceman(secret_word):
     print("You have {} incorrect guesses left".format(incorrectCount))
     #print(secret_word)
     print(get_guessed_word(secret_word,letters_guessed))
+
     while incorrectCount > 0:
         print("-------------------------------------")
         letter = input("Please enter a letter: ").lower()
         if letter.isalpha() == True:
-
             if letter not in letters_guessed:
                 letters_guessed.append(letter)
             # if the length of the last letter appended i s equal to 1, loop. Else prompt to
@@ -126,42 +126,50 @@ def spaceman(secret_word):
                             again = input("Want to play again?").lower()
                             if again == 'yes' or again == 'y':
                                 spaceman(load_word())
-                            break
+                            elif again == 'no' or again == 'n':
+                                break
+                            else:
+                                again = input("Please enter a valid answer").lower()
+
                     else:
                         #print(count)
                         #if letters_guessed[len(letters_guessed)-1]
-                        print("sorry your guess was not in the word, try again :( ")
+                        print("Sorry your guess was not in the word, try again :( ")
                         incorrectCount -= 1
                         print("You have {count} incorrect guesses left".format(count = incorrectCount))
                         print(get_guessed_word(secret_word,letters_guessed))
+
                         if incorrectCount == 0:
                             print("You lost! Game over! Better luck next time :)")
                             print("The secret word was...")
                             print(secret_word)
                             draw()
-                            again = input("Want to play again?: type 'y' or 'yes' if you would like to :) ").lower()
+                            again = input("Want to play again?: (y/n)").lower()
+
                             if again == 'yes' or again == 'y':
                                 spaceman(load_word())
-                            break
+                            elif again == 'no' or again == 'n':
+                                break
+                            else:
+                                again = input("Please enter a valid answer").lower()
+
                             if is_word_guessed(secret_word,letters_guessed):
                                 print("You Won!!!!")
                                 again = input("Want to play again?").lower()
                                 print("-------------------------------------")
+
                                 if again == 'yes' or again == 'y':
                                     spaceman(load_word())
                                 break
+
                 else:
                     print("please enter 1 letter only")
+
             else:
                 print("You've already guessed this letter, try again")
+
         else:
             print("Please enter only english alphabetical letter: ")
-        #print("---------------------------------------")
-        # else:
-        #     print("You lost! Game over! Better luck next time :)")
-        #     print("The secret word was...")
-        #     print(secret_word)
-                #continue
 
 
 def test():
@@ -175,5 +183,6 @@ def test():
 
 
 #These function calls that will start the game
-secret_word = load_word()
-spaceman(load_word())
+if __name__ == '__main__':
+    secret_word = load_word()
+    spaceman(secret_word)
